@@ -54,17 +54,10 @@ def new_account(request):
         if request.method == 'POST':
             form = NewUserForm(request.POST)
             if form.is_valid():
-<<<<<<< HEAD
-                first_name = form.cleaned_data['first_name']
-                last_name = form.cleaned_data['last_name']
-                email = form.cleaned_data['email']
-                username = form.cleaned_data['username']
-=======
                 first_name = (form.cleaned_data['first_name'].lower()).capitalize()
                 last_name = (form.cleaned_data['last_name'].lower()).capitalize()
                 email = form.cleaned_data['email'].lower()
                 username = form.cleaned_data['enrollment_no'].lower()
->>>>>>> 26172814f30a204d289b87e5be99063b5e12fb88
                 password = form.cleaned_data['password']
 
                 if User.objects.all().filter(email=email).first() is None and User.objects.all().filter(
@@ -85,10 +78,6 @@ def new_account(request):
         return render(request, 'new_account.html', {'form': form})
     else:
         return redirect('home')
-<<<<<<< HEAD
-=======
-
->>>>>>> 26172814f30a204d289b87e5be99063b5e12fb88
 
 # login users
 def verify_user(request):
