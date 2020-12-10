@@ -17,32 +17,34 @@ def introduction_page(request):
 
 # Page that he will see after clicking on make new account
 def new_account(request):
-    if request.method == 'POST':
-        form = NewUserForm(request.POST)
-        if form.is_valid():
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            email = form.cleaned_data['email']
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
+    if not request.user.is_authenticated:
+        if request.method == 'POST':
+            form = NewUserForm(request.POST)
+            if form.is_valid():
+                first_name = form.cleaned_data['first_name']
+                last_name = form.cleaned_data['last_name']
+                email = form.cleaned_data['email']
+                username = form.cleaned_data['username']
+                password = form.cleaned_data['password']
 
-            if User.objects.all().filter(email=email).first() is None and User.objects.all().filter(
-                    username=username).first() is None:
-                user = User(first_name=first_name, last_name=last_name, email=email,
-                            password=password,
-                            username=username)
-                user.save()
-                print('Successful!!!')
-                login(request, user)
-                return redirect('home')
+                if User.objects.all().filter(email=email).first() is None and User.objects.all().filter(
+                        username=username).first() is None:
+                    user = User(first_name=first_name, last_name=last_name, email=email,
+                                password=password,
+                                username=username)
+                    user.save()
+                    print('Successful!!!')
+                    login(request, user)
+                    return redirect('home')
+                else:
+                    print('User already found! ')
             else:
-                print('User already found! ')
+                print('Not Valid')
         else:
-            print('Not Valid')
+            form = NewUserForm()
+        return render(request, 'new_account.html', {'form': form})
     else:
-        form = NewUserForm()
-    return render(request, 'new_account.html', {'form': form})
-
+        return redirect('home')
 
 # login users
 def verify_user(request):
@@ -67,7 +69,7 @@ def verify_user(request):
             form = VerifyUser()
         return render(request, 'verify_user.html', {'form': form})
     else:
-        redirect('home')
+        return redirect('home')
 
 
 # Home page for logged in users

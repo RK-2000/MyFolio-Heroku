@@ -1,36 +1,68 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8">
-    <link type="text/css" href="{% static 'main_app/stylesheets/home.css' %}">
-    <title>MyFolio - Home</title>
-</head>
-<body>
-<h1>
-    Home Page
-</h1>
-<a href="{% url 'add_blog' %}">Add Blog</a>
-<br>
-<a href="{% url 'logout_user' %}">Logout</a>
-<br>
-Blog will be here
-{% if all_blog %}
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 
-    {% for blog in all_blog reversed %}
+    <link rel="stylesheet" type="text/css" href="#" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'main_app\fonts\Quicksand\stylesheet.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'main_app\stylesheets\index.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'main_app\stylesheets\navbar-style.css' %}"
+    />
 
-        <h3>{{ blog.name }}</h3>
-        <article>
-            {{ blog.description }}
-        </article>
-        <article>
-            created at {{ blog.created_at|date:'M D, h:i' }}hrs
-        </article>
-        {% if blog.image %}
-        <img src="media/{{ blog.image }}" width='500px' height="auto">
-        {% endif %}
-    {% endfor %}
+    <style>
+      .background-img {
+        background: url({%static"main_app\img\people-edit.jpg"%}) 50% fixed
+          no-repeat;
+        background-size: cover;
+        height: 100%;
+        position: absolute;
+        width: 100%;
+      }
 
-{% endif %}
-</body>
+      .background-cover {
+        background-color: rgba(0, 0, 0, 0.2);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <body>
+      <h1>Home Page</h1>
+      <a href="{% url 'add_blog' %}">Add Blog</a>
+      <br />
+      <a href="{% url 'logout_user' %}">Logout</a>
+      <br />
+      Blog will be here {% if all_blog %} {% for blog in all_blog reversed %}
+
+      <h3>{{ blog.name }}</h3>
+      <article>{{ blog.description }}</article>
+      <article>created at {{ blog.created_at|date:'M D, h:i' }}hrs</article>
+      {% if blog.image %}
+      <img src="media/{{ blog.image }}" width="500px" height="auto" />
+      {% endif %} {% endfor %} {% endif %}
+    </body>
+  </body>
 </html>
