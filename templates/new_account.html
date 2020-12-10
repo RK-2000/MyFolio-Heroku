@@ -21,6 +21,15 @@
                 $("#fullnav").toggleClass("open");
             });
         });
+
+        function makePasswordVisible() {
+            var x = document.getElementById("password-field");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
     </script>
 
 
@@ -38,7 +47,7 @@
 
         .background-cover {
             z-index: -1;
-            background-color: rgba(10, 10, 10, .40);
+            background-color: rgba(240, 240, 240, .90);
             position: fixed;
             top: 0;
             left: 0;
@@ -55,8 +64,8 @@
 </div>
 <nav class="navbar navbar-expand-md navbar-light">
     <div class="container-fluid">
-        <a class="navbar-brand text-light ml-3" href="#" id="logo-name">
-            <img src="{% static 'main_app/img/Group 2.png' %}" class="navbar-brand" id="logo" width="40px">
+        <a class="navbar-brand text-dark ml-2" href="#" id="logo-name">
+            <img src="{% static 'main_app/img/Group 2@2x.png' %}" class="navbar-brand" id="logo" width="30px">
             MyFolio
         </a>
     </div>
@@ -90,22 +99,24 @@
                 {{ form.email }}
                 <small id="emailHelp" class="form-text">We'll never share your email with anyone
                     else.</small>
-                <label>Username</label>
-                {{ form.username }}
+                <label>Enrollment Number</label>
+                {{ form.enrollment_no }}
                 <label>Password</label>
                 {{ form.password }}
+                <input type="checkbox" onclick="makePasswordVisible()">Show Password
                 <small class="form-text" id="email-help">Password should be minimum 7 letters long with atleast a
                     character, a digit and a symbol</small>
 
 
-                    {% if form.errors %}
-                        {% for key,values in form.errors.items %}
-                            <div class="alert alert-warning" role="alert">
-                                <a>{{ key }}:{{ values }}</a>
-                                <br>
-                            </div>
-                        {% endfor %}
-                    {% endif %}
+
+                {% if form.errors %}
+                    {% for key,values in form.errors.items %}
+                        <div class="alert alert-warning" role="alert">
+                            <a>{{ key }}:{{ values }}</a>
+                            <br>
+                        </div>
+                    {% endfor %}
+                {% endif %}
 
 
 

@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+<<<<<<< HEAD
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -66,3 +67,227 @@
     </body>
   </body>
 </html>
+=======
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyFolio - Home</title>
+
+    <link rel="stylesheet" type="text/css" href="#">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'main_app\fonts\Quicksand\stylesheet.css' %}">
+    <link rel="stylesheet" href="{% static 'main_app\fonts\google-sans\stylesheet.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main_app\stylesheets\home.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main_app\stylesheets\navbar-style.css' %}">
+    <style>
+        .background {
+            z-index: -1;
+            position: fixed;
+            background: url({% static 'main_app\img\d2.png' %}) 50% fixed no-repeat;
+            background-size: cover;
+            height: 100%;
+            width: 100%;
+        }
+
+        .background-cover {
+            z-index: -1;
+            background-color: rgb(243, 242, 239, .80);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#toggle").click(function () {
+                $(this).toggleClass("active");
+                $("#fullnav").toggleClass("open");
+            });
+        });
+
+        function myFunction() {
+            var x = document.getElementById("exampleInputPassword1");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
+
+        function Copy() {
+            /* Get the text field */
+            var copyText = document.getElementById("myInput");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+
+            /* Alert the copied text */
+            alert("Copied the text: " + copyText.value);
+        }
+    </script>
+</head>
+<body>
+<div class="background">
+</div>
+<div class="background-cover">
+</div>
+<nav class="navbar navbar-light bg-light justify-content-between">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'main_app/img/Group 2@2x.png' %}" class="navbar-brand"
+                 id="logo" width="30px">
+            MyFolio
+        </a>
+        <div>
+            <form class="navbar-form navbar-search-form active" role="search" method="POST">
+                <div class="form-group">
+                    <div class="input-group">
+                        {% csrf_token %}
+                        {{ form.searchForm.search }}
+                        <input type="hidden" name='form_type' value="search">
+                        <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit"><svg width="1.5em" height="1.5em"
+                                                                           viewBox="0 0 16 16"
+                                                                           class="bi bi-search" fill="currentColor"
+                                                                           xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd"
+        d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+  <path fill-rule="evenodd"
+        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+</svg></button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+            <div class="fullnavBtn mt-4 col-2" id="toggle">
+                <span class="top"></span>
+                <span class="middle"></span>
+                <span class="bottom"></span>
+            </div>
+            <div class="fullnav mr-4" id="fullnav">
+                <nav class="fullnavMenu mr-4">
+                    <ul>
+                        <li><a href="{% url 'user_profile' %}">Edit Profile</a></li>
+                        <li><a href="{% url 'logout_user' %}" class="text-light">Logout</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="extra-space mb-4">
+</div>
+<main class="container">
+    <div class="add-blog row justify-content-center" id="add-blog">
+        <div class="card bg-light col-12 col-md-10 mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Add Blog</h5>
+                <p class="card-text ">What's on your mind?</p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Add Post
+                </button>
+            </div>
+        </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Create a post</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.addBlog.as_p }}
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% if form.errors %}
+        {% for key,values in form.errors.items %}
+            <div class="alert alert-warning" role="alert">
+                <a>{{ key }}:{{ values }}</a>
+                <br>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <!-- Card -->
+    {% if data %}
+        {% for d in data reversed %}
+            <div class="row">
+                <div class="col-12 card-container mb-2">
+                    <div
+                            class="card shadow bg-light text-dark blogs"
+                    >
+                        <div class="card-body row">
+                            <div class="col-10">
+                                <a class="card-title text-dark h5"
+                                   href="http://127.0.0.1:8000/profile/{{ d.author }}">{{ d.author_fn }}
+                                </a>
+                            </div>
+                            <div class="col-2">
+                                <input type="text" type='hidden' class="d-none"
+                                       value="http://127.0.0.1:8000/post/{{ d.blog_id }}" id="myInput">
+                                <button onclick="Copy()" class="copy-btn btn">
+                                    <svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-clipboard"
+                                         fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                                        <path fill-rule="evenodd"
+                                              d="M9.5 1h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="col-12">
+                                <p class="card-text">
+                                    <small class="text-muted"><strong>Uploaded
+                                        at</strong> {{ d.created_at|date:'h:i, M D' }}</small>
+                                </p>
+                            </div>
+                            <div class="col-12">
+                                <p class="card-text desc">
+                                    {{ d.description }}
+                                </p>
+                            </div>
+                            <div class="col-12 image">
+                                {% if d.image %}
+                                    <img src="media/{{ d.image }}" class="card-img-top" alt=""/>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</main>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+>>>>>>> 26172814f30a204d289b87e5be99063b5e12fb88

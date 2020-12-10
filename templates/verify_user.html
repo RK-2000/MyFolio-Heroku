@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'main_app\stylesheets\navbar-style.css' %}">
     <style>
         .background-img {
-            background: url({% static 'main_app\img\sean.jpg' %}) 50% fixed no-repeat;
+            background: url({% static 'main_app\img\people-edit.jpg' %}) 50% fixed no-repeat;
             background-size: cover;
             height: 100%;
             position: absolute;
@@ -22,7 +22,7 @@
         }
 
         .background-cover {
-            background-color: rgba(10, 10, 10, .50);
+             background-color: rgba(240, 240, 240, .90);
             position: absolute;
             top: 0;
             left: 0;
@@ -39,6 +39,15 @@
                 $("#fullnav").toggleClass("open");
             });
         });
+
+        function myFunction() {
+            var x = document.getElementById("exampleInputPassword1");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+        }
     </script>
 </head>
 <body>
@@ -47,9 +56,9 @@
         <main class="container-fluid">
             <nav class="navbar navbar-expand-md navbar-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand text-light" href="#" id="logo-name">
-                        <img src="{% static 'main_app/img/Group 2.png' %}" class="navbar-brand" id="logo">
-                        MyFolio
+                    <a class="navbar-brand text-dark" href="#" id="logo-name">
+                        <img src="{% static 'main_app/img/Group 2@2x.png' %}" class="navbar-brand" id="logo" width="30px">
+                    MyFolio
                     </a>
                 </div>
             </nav>
@@ -78,6 +87,8 @@
                             else.</small>
                         <label class="email-label">Password</label>
                         {{ form.password }}
+                        <input type="checkbox" onclick="myFunction()">Show Password
+                        <br>
                         {% if messages %}
                             {% for message in messages %}
                                 <div class="alert alert-warning" role="alert">

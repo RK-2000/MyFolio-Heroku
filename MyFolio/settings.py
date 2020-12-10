@@ -25,7 +25,7 @@ SECRET_KEY = 'mvh-x0o4u^3e77(c0il2p7@ep^fo62-zka7j65-dyw27czf%+_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1','sampledomain.com']
+ALLOWED_HOSTS = ['127.0.0.1','myfolio-21.herokuapp.com']
 
 # Application definition
 
@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 
 ROOT_URLCONF = 'MyFolio.urls'
 
